@@ -40,13 +40,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findByPage" parameterType="Map" resultType="dept" >
 		select * from dept 
 		<where>
-			<if test="dname!=null">and dname like #{%dname%}</if>
-			<if test="loc!=null">and loc like #{%loc%}</if>
+			<if test="dname!=null">and dname like "%"#{dname}"%"</if>
+			<if test="loc!=null">and loc like "%"#{loc}"%"</if>
 		</where>
 		limit #{start},#{pageCount}
 	</select>
-	<select id="findAllCount" resultType="int" >
+	<select id="findAllCount" resultType="int" parameterType="dept">
 		select count(deptno) from dept
+		<where>
+			<if test="dname!=null">and dname like "%"#{dname}"%"</if>
+			<if test="loc!=null">and loc like "%"#{loc}"%"</if>
+		</where>
 	</select>
 
 </mapper>

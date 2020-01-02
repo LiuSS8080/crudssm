@@ -12,5 +12,5 @@ public interface DeptMapper {
 	Dept findOne(Integer id);
 	List<Dept> findAll();
 	List<Dept> findByPage(Map<String, Object> map);
-	Integer findAllCount();
+	Integer findAllCount(Dept dept);
 }

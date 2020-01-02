@@ -12,9 +12,9 @@
 		<h3>部门管理</h3>
 	</div>
 	<div  style="margin: 20px auto;width:800px;text-align: right" >
-		<form action="dept" method="get">
-			部门名称：<input name="dname" />
-			所在地：<input name="loc" />
+		<form action="dept" method="get" id="form1">
+			部门名称：<input name="dname" value="${pb.selectBean.dname }"/>
+			所在地：<input name="loc" value="${pb.selectBean.loc }"/>
 			<button>查询</button>
 			<button type="button" onclick="location.href='deptSave.jsp'">增加</button>
 		</form>
@@ -51,14 +51,21 @@
 				<a href="dept?currentPage=${pb.currentPage==1?1:pb.currentPage-1 }">上一页</a>  
 				${pb.currentPage }/${pb.pages } 
 				<a href="dept?currentPage=${pb.currentPage==pb.pages?pb.pages:pb.currentPage+1 }">下一页</a> 
-				<a href="dept?currentPage=${pb.pages }">尾页</a>  
+				<a href="javascript:void(0)" onclick="formSub(${pb.pages })">尾页</a>  
 				  共${pb.pages }页
+				  共${pb.totalCount }条数据
 			</th>
 		</tr>
 	</table>
 	
 <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
 <script type="text/javascript">
+function formSub(arg){
+	alert(123);
+	var form1 = $("#form1");
+	form1.action = "dept?currentPage="+arg;
+	$("#form1").submit();
+}
 </script>
 </body>
 </html>

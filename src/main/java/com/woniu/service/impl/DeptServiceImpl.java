@@ -63,9 +63,10 @@ public class DeptServiceImpl implements IDeptService {
 		}
 		List<Dept> list = mapper.findByPage(map);
 		pb.setData(list);
-		Integer totalCount = mapper.findAllCount();
+		Integer totalCount = mapper.findAllCount(pb.getSelectBean());
 		Integer pages = totalCount%pb.getPageCount()==0?totalCount/pb.getPageCount():totalCount/pb.getPageCount()+1;
 		pb.setPages(pages);
+		pb.setTotalCount(totalCount);
 		System.out.println(pb.getData());
 		return pb;
 	}
